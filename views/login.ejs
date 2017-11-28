@@ -1,0 +1,64 @@
+<div class="login-wrapper" ng-app="loginApp" ng-controller="loginController">
+    <form class="login-mod" name="loginForm" ng-submit="postForm()">
+        <p class="title-lo-mod">登录</p>
+        <ul class="reg-inp-li">
+            <li>
+                <input type="text"
+                       placeholder="邮箱 / 用户名" name="name" ng-model="formData.name"
+                       ng-pattern="/(^[a-zA-Z][a-zA-Z0-9_]{4,11}$)|(^(\w+)(\.\w+)*@(\w+)((\.\w+))+$)/" required>
+
+                <i class="fa fa-user"></i>
+                <p>
+                    <span ng-cloak ng-show="loginForm.name.$invalid && !loginForm.name.$pristine" class="text-danger">
+                        用户名/邮箱不合法，请重新输入
+                    </span>
+                </p>
+            </li>
+            <li>
+                <input type="password" placeholder="密码" name="password" ng-model="formData.password"
+                       ng-pattern="/(?!^\\d+$)(?!^[a-zA-Z]+$)(?!^[_#@]+$).{5,}/" ng-maxlength="12" required>
+                <i class="spinner"></i>
+                <p>
+                    <span ng-cloak class="text-danger" ng-show="loginForm.password.$invalid && !loginForm.password.$pristine">
+                        <i class="aw-icon i-err"></i>
+                        密码不合法,请重新输入
+                    </span>
+                </p>
+            </li>
+        </ul>
+        <a href="#">忘记密码了？</a>
+        <button type="submit" ng-disabled="loginForm.$invalid">
+            <i class="spinner"></i>
+            <span class="state">登录</span>
+        </button>
+    </form>
+    </p>
+</div>
+<script>
+    //创建一个登录模块
+    const loginApp = angular.module('loginApp',[]);
+    loginApp.controller('loginController',($scope,$http)=>{
+        $scope.formData = {};
+        //提交用户的登录信息
+        $scope.postForm = ()=>{
+            $http({
+                method:'POST',
+                url:'/login',
+                data:$.param($scope.formData),
+                headers:{'Content-Type':'application/x-www-form-urlencoded'}
+            }).then(data=>{
+                if(data.data == 'success'){
+                    window.location.href = '/';
+                }else{
+                    $scope.error = data.data;
+                    $('#errorbox').fadeIn();
+                    setTimeout(()=>{
+                        $('#errorbox').fadeOut();
+                    },1000)
+                }
+            }).catch(err=>{
+                console.log(err);
+            })
+        }
+    })
+</script>

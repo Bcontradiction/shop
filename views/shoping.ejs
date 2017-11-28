@@ -1,0 +1,181 @@
+<div class="add-t-link">
+    <ul class="container" style="position: relative">
+        <li style="position: absolute;top: 50%;left: 2%;">
+            <a class="click-home" href="http://localhost:8888/">首页</a>
+            <i class="fa fa-edge" aria-hidden="true"></i>
+        </li>
+        <li style="position: absolute;top: 50%;left: 7%;">
+            <a id="addshop-top-block" href="#">商铺</a>
+        </li>
+    </ul>
+</div>
+
+<div class="add-shoping container">
+    <div class="row">
+        <div class="add-shoping-top col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden-xs">
+            <ul class="sort-shoping">
+                <li>排序:</li>
+                <li class="sort-default">默认</li>
+                <li>价格
+                    <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                    <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </li>
+                <li>创建时间
+                    <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                    <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--小屏幕显示-->
+    <div class="row">
+        <div class="add-shoping-top col-lg-12 col-md-12 col-sm-12 col-xs-12 visible-xs">
+            <ul class="sort-shoping clearfix">
+                <li class="">排序:</li>
+                <li class="sort-default">默认</li>
+                <li>价格
+                    <i class="fa fa-arrow-down" style="cursor: pointer" aria-hidden="true"></i>
+                    <i class="fa fa-arrow-up" style="cursor: pointer" aria-hidden="true"></i>
+                </li>
+                <li>创建时间
+                    <i class="fa fa-arrow-down" style="cursor: pointer" aria-hidden="true"></i>
+                    <i class="fa fa-arrow-up" style="cursor: pointer" aria-hidden="true"></i>
+                </li>
+            </ul>
+            <div class="click-sort clearfix">
+                <p>过滤</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="padding: 0;margin-left: 10px;">
+        <div class="unclick-sort-list hidden-xs rwo col-lg-2 col-md-2 col-sm-2" style="padding: 0">
+            <div class="c-s-l-p">
+                <p>价 格:</p>
+            </div>
+
+            <ul class="click-sort-list-ul">
+                <li class="findAll">
+                    <span>所有</span>
+                </li>
+                <li class="findFirstGear">
+                    <span><= 100.00</span>
+                </li>
+                <li class="findSecond">
+                    <span>100.00 < && <=500.00 </span>
+                </li>
+                <li class="findThirdGear">
+                    <span>500.00 < && <= 1000.0</span>
+                </li>
+                <li class="findFourthGear">
+                    <span>1000.00 < && <= 5000.00</span>
+                </li>
+                <li class="findFifthGear">
+                    5000.00 ++
+                </li>
+            </ul>
+        </div>
+        <div style="padding: 0" class="shoping-block row col-lg-10 col-md-10 col-sm-10 col-xs-12">
+            <div class="unc-so-li-next row col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0">
+                <!--商品-->
+                <% shop.forEach(function(shops){%>
+                <div class="shoping-clock-single col-lg-3 col-md-4 col-sm-4 col-xs-12" target="<%=shop.length%>">
+                    <div class="shop-bl-img">
+                        <a href="/shop/<%=shops._id%>">
+                            <img src="<%=shops.pictures%>" alt="这个商品没有预览图" class="clearfix">
+                        </a>
+                    </div>
+                    <ul class="shop-bl-font">
+                        <li class="shop-bl-font-describe">
+                            <p><%=shops.shopname%></p>
+                        </li>
+                        <li class="shop-bl-font-price">
+                            $<p><%=shops.price%></p>
+                        </li>
+                        <li class="click-shop-buy add-cart-post" target="<%=shops._id%>">
+                            <span><a href="#">加入购物车</a></span>
+                        </li>
+                    </ul>
+                </div>
+                <%})%>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<div class="click-sort-list hide">
+    <div class="c-s-l-p">
+        <p>价 格:</p>
+    </div>
+
+    <ul class="click-sort-list-ul">
+        <li>
+            <span>所有</span>
+        </li>
+        <li>
+            <span><= 100.00</span>
+        </li>
+        <li>
+            <span>100.00 < && <=500.00 </span>
+        </li>
+        <li>
+            <span>500.00 < && <= 1000.0</span>
+        </li>
+        <li>
+            <span>1000.00 < && <= 5000.00</span>
+        </li>
+        <li>
+            5000.00 <i class="fa fa-plus" aria-hidden="true"></i><i class="fa fa-plus" aria-hidden="true"></i>
+        </li>
+    </ul>
+</div>
+<div class="alert alert-warning alert-addCart hide" style="position: fixed;top: 150px;left:calc(50% - 25px);background: #f0f9eb;color: #67c23a;opacity: 0.8">
+    <a href="#" class="close" data-dismiss="alert">
+        &times;
+    </a>
+    <strong>已添加该商品到购物车</strong>
+</div>
+<div class="alert alert-warning alert-unaddCart hide" style="position: fixed;top: 150px;left:calc(50% - 25px);background: #FDF5E6;color: #eb9e05;opacity: 0.8">
+    <a href="#" class="close" data-dismiss="alert">
+        &times;
+    </a>
+    <strong>请不要重复添加，选择多件请进入购物车选择</strong>
+</div>
+<script>
+    $('.add-cart-post').click(function(event){
+    var id = $(this).attr('target')
+    $.ajax({
+        type:'POST',
+        url:`/shoping-clickAdd/${id}`,
+        headers:{'Content-Type':'application/x-www-form-urlencoded'}
+    }).done(function(data){
+        if(data.success == true){
+            $('.alert-addCart').removeClass('hide');
+            setTimeout(function(){
+                $('.alert-addCart').addClass('hide');
+            },1500)
+            // $('.click-shop-satisfaction').removeClass('gray-small')
+        }else if(data == null) {
+            $('.alert-unaddCart').removeClass('hide');
+            setTimeout(function(){
+                $('.alert-unaddCart').addClass('hide');
+            },1500)
+        }
+    })
+})
+    $(document).on('click','.fa-arrow-down',function(event){
+        $.ajax({
+            type:'POST',
+            url:`/shop-findConditionTimeIn`
+        }).done(data=>{
+
+        }).fail(err=>{
+
+        })
+    })
+    $('.click-home').click(function(event){
+        window.location.href = `/`
+    })
+
+</script>

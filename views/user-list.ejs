@@ -1,0 +1,261 @@
+<div>
+    <div class="add-t-link">
+        <ul class="container" style="position: relative">
+            <li style="position: absolute;top: 50%;left: 2%;">
+                <a href="#">首页</a>
+                <i class="fa fa-edge" aria-hidden="true"></i>
+            </li>
+            <li style="position: absolute;top: 50%;left: 7%;">
+                <a id="addshop-top-block" href="#">个人信息</a>
+            </li>
+        </ul>
+    </div>
+    <div class="container">
+        <div class="user-list row" id="main">
+            <div class="unclick-sort-list hidden-xs rwo col-lg-2 col-md-2 col-sm-2" style="margin:0;padding: 0">
+                <div class="c-s-l-p red-weight">
+                    <p>个人设置:</p>
+                </div>
+
+                <ul class="click-sort-list-ul" id="left">
+                    <li class="leftborder">
+                        <span class="">个人信息</span>
+                    </li>
+                    <li class="gray-weight">
+                        <span>收藏的商品</span>
+                    </li>
+                    <li class="gray-weight">
+                        <span>发表过的商品</span>
+                    </li>
+                    <li class="gray-weight">
+                        <span>收货地址</span>
+                    </li>
+                    <li class="gray-weight">
+                        <span>权限申请</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="u-l-right flort-right col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                <ul class="y-l-r-ul" ng-app="settingAllApp" id="list">
+                    <li class="y-l-r-u-info" style="display: block">
+                        <% include user-list/info.ejs %>
+                    </li>
+                    <li class="y-l-r-u-collect ">
+                        <% include user-list/collect.ejs %>
+                    </li>
+                    <li class="y-l-r-u-publish ">
+                        <% include user-list/publish.ejs %>
+                    </li>
+                    <li class="y-l-r-u-address">
+                        <% include user-list/address.ejs %>
+                    </li>
+                    <li class="y-l-r-u-vip hide">
+                        <% include user-list/cart.ejs %>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="alert alert-warning alert-default-url hide" style="position: absolute;top: 150px;left:calc(50% - 25px);background: #f0f9eb;color: #67c23a;opacity: 0.8">
+    <a href="#" class="close" data-dismiss="alert">
+        &times;
+    </a>
+    <strong>成功设置为默认地址！</strong>
+</div>
+<link rel="stylesheet" href="/plugins/fileinput/css/fileinput.min.css">
+<script src="/plugins/fileinput/js/fileinput.min.js"></script>
+<script src="/plugins/fileinput/js/locales/zh.js"></script>
+<script>
+    var settingApp = angular.module('settingApp',[]);
+    settingApp.controller('settingController',($scope,$http)=> {
+        $scope.formData = {
+            motto: $('input[name=motto]').val(),
+            avatar: $('input[name=avatar]').attr('target')
+        }
+        $("#avatar").fileinput({
+            overwriteInitial: true,
+            uploadUrl: '/updateImage',
+            maxFileSize: 1500,
+            showClose: false,
+            showCaption: false,
+            showBrowse: false,
+            browseOnZoneClick: true,
+            removeLabel: '',
+            removeIcon: '<i class="glyphicon glyphicon-remove"></i>',
+            removeClass: 'btn btn-danger',
+            removeTitle: "取消或重置更改",
+            uploadLabel: '',
+            uploadClass: 'btn btn-success',
+            uploadIcon: '<i class="glyphicon glyphicon-arrow-up"></i>',
+            msgErrorClass: 'alert alert-block alert-danger',
+            elErrorContainer: 'kv-avatar-errors-2',
+            layoutTemplates: {main2: '{preview}' + '{browse}'},
+            language: "zh",
+            allowedFileExtensions: ["jpg", "png", "gif"],
+            defaultPreviewContent: '<img src="' + $("#avatar").attr('target') + ' ">'
+        }).on('fileuploaded', function (event, data, previewId, index) {
+            $scope.formData.avatar = data.response.url.replace('public', '');
+        });
+        $scope.postForm = () => {
+            $http({
+                method: 'POST',
+                url: '/updateUser/' + $('form').attr('id'),
+                data: $.param($scope.formData),
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }).then(data => {
+                if (data.data == 'success') {
+                    window.location.reload();
+                } else {
+                    alert(data.data);
+                }
+            }).catch(err => {
+                console.log(err);
+            })
+        }
+    })
+
+    //1.声明添加地址的模块
+    var addUrlApp = angular.module('addUrlApp',[]);
+    //2.在该模块下，声明一个addUrlController这样的控制器
+    addUrlApp.controller('addUrlController',($scope,$http)=>{
+//        console.log(1235)
+        $scope.formData = {};
+//        console.log($scope.formData)
+        $scope.postForm = ()=>{
+            //发送一个POST请求，用来提交用户注册的信息
+            $http({
+                method:'POST',//发送的方式
+                url:'/address',//发送的地址
+                data:$.param($scope.formData), //发送的数据
+                headers:{'Content-Type':'application/x-www-form-urlencoded'}
+            }).then(data=>{
+                window.location.reload();
+                console.log(data)
+            }).catch(err=>{
+                console.log(err);//失败以后调用的代码
+            })
+        }
+        /*$scope.resetData = function(){
+            var $form =$("resetData").closest('form');
+            var $names =$form.find("[type='text'],[type='password',[type='tel']");
+            $names.each(function(){
+                $(this).val("");
+            })
+        }*/
+        //删除操作
+        $scope.delete = (event)=>{
+//            let targetA = $(event.currentTarget);
+//            let id = targetA.attr('target');
+            let id = $(this).attr('target');
+            console.log(id)
+            if(id !== '' && confirm('确定要删除这个问题吗？')){
+               /* window.location.href = '/';*/
+                $http({
+                    method:'POST',
+                    url:`/address/${id}/delete`,
+                    headers:{'Content-Type':'application/x-www-form-urlencoded'}
+                }).success((data)=>{
+                    console.log(data)
+                    if(!data.success){
+                        alert(data.message);
+                    }else{
+
+                    }
+                }).error(err=>{
+                    console.log(err);
+                })
+            }
+        }
+    })
+
+    //编辑
+    var editUrlApp = angular.module('editUrlApp',[]);
+    editUrlApp.controller('editUrlController',($scope,$http)=>{
+//        console.log(12)
+        $('.click-url-edit').click(function(event){
+            var id = $(this).attr('target')
+//            console.log(id)
+            var name = $(this).closest('li').children('.thislidiv').children('p:nth-of-type(1)').children('a').html()
+            var url = $(this).closest('li').children('.thislidiv').children('p:nth-of-type(2)').children('a').html()
+            var tel = $(this).closest('li').children('.thislidiv').children('p:nth-of-type(3)').children('a').html()
+            $('.editUrlname').val(name)
+            $('.editUrlurl').val(url)
+            $('.editUrltel').val(tel)
+            $('.editurlsubmitinput').val(id)
+//            console.log($('.editurlsubmitinput').val(id))
+            $scope.formData = {
+                name:$('input[name=name]').val(),
+                url:$('input[name=url]').val(),
+                tel:$('input[name=tel]').val(),
+            };
+            console.log($scope.formData)
+        })
+        $('.editurlsubmit').click(function(event){
+            var data = {
+                name:$('input[name=name]').val(),
+                url:$('input[name=url]').val(),
+                tel:$('input[name=tel]').val(),
+            }
+            var form = $(this).closest('form');
+            var id = $(this).parent('div').children('input').val()
+            $.ajax({
+                type:'POST', //发送ajax的方式,GET请求基本上获取数据的，POST提交数据.
+                url:`/address/${id}/edit`,
+                data:$.param(data),
+                headers:{'Content-Type':'application/x-www-form-urlencoded'}
+            }).done(result=>{
+                form.before(result);
+                window.location.href = result.url
+            }).fail(err=>{
+                console.log(err);
+            })
+        })
+        $scope.isEmpty = true;
+        $scope.error = '';
+        $scope.updateForm = (event)=>{
+            let form = $(event.currentTarget);
+//            window.location.href = '/';  //！！！！！！！！
+            console.log(1313)
+            $http({
+                method:'POST',
+                url:`/address/${id}/edit`,
+                data:$.param($scope.formData),
+                headers:{'Content-Type':'application/x-www-form-urlencoded'}
+            }).success((data)=>{
+                console.log(1)
+                console.log(data)
+                if(typeof data === 'object'){
+//                    window.location.href = data.url;
+                }else{
+                    $scope.error = data;
+                    $('#errorbox').fadeIn();
+                    setTimeout(function(){
+                        $('#errorbox').fadeOut();
+                    },1000)
+                }
+
+            }).error((err)=>{
+                console.log(err);
+            })
+        }
+
+    })
+
+    angular.module('settingAllApp', ['settingApp','editUrlApp','addUrlApp']);
+
+    $(function(){
+        $('#left>li').hover(function(){
+            $('#left li').eq($(this).index()).addClass('leftborder').siblings().removeClass('leftborder');
+//            $('#left li').eq($(this).index()).removeAttr('style');
+//            $('#list li').eq($(this).index()).addClass('listborder').siblings().removeClass('listborder');
+            $('#list>li').eq($(this).index()).css('display','block').siblings().css('display','none');
+        })
+        $('.main').hover(function(){
+//            $('#left li').eq($(this).index()).siblings().removeClass('leftborder');
+//            $('#left li').eq($(this).index()).siblings().removeAttr('style');
+//            $('#list li').eq($(this).index()).siblings().removeClass('listborder');
+            $('#list>li').eq($(this).index()).siblings().css('display','none');
+        })
+    })
+</script>

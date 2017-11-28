@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Bootstrap 实例 - 响应式的导航栏</title>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/stylesheets/home.css">
+    <!--加载图标库-->
+    <link rel="stylesheet" href="/plugins/font-awesome/css/font-awesome.css">
+</head>
+<body>
+<!--导航栏-->
+<nav id="container" class="navbar container" role="navigation">
+    <div class="container-fluid">
+        <ul class="login-register">
+            <li class="login_home">
+                <a href="#">登录</a>
+            </li>
+            <li class="register_home">
+                <a href="#">注册</a>
+            </li>
+            <li>
+
+            </li>
+        </ul>
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#example-navbar-collapse">
+                <span class="sr-only">切换导航</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand logo" href="#">
+                <img src="images/logo3.png" alt="">
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="example-navbar-collapse">
+        </div>
+    </div>
+    <!--顶部tap切换-->
+    <header>
+        <ul class="nav-h">
+            <li class="nav-h-o"><i class="fa fa-user-o" aria-hidden="true"></i> <span>我想...</span></li>
+            <li class="nav-h-t"><span>我的书柜</span></li>
+            <li class="nav-h-th"><span>购物车</span></li>
+            <li class="nav-h-f"><span>热销书</span></li>
+            <li class="nav-h-fi"><span>热门·书话题</span></li>
+            <li class="nav-h-si"><span>技术支持</span></li>
+            <li class="nav-h-se"><span>开发者</span></li>
+            <!--<li class="nav-h-ei"><span></span></li>-->
+        </ul>
+        <!--<div class="search">
+            <div class="ser1">
+                <input type="text">
+                <div class="hot">
+                    <a href="#">小米5s首发</a>
+                    <a href="#">人工智能电视</a>
+                </div>
+            </div>
+            <div class="ser2">
+                <i class="iconfont icon-sousuo"></i>
+            </div>
+            <ul class="keywordsList hide">
+                <li><a href="#">小米手机5<span>约有15件</span></a></li>
+                <li><a href="#">小米手机5<span>约有15件</span></a></li>
+                <li><a href="#">小米手机5<span>约有15件</span></a></li>
+                <li><a href="#">小米手机5<span>约有15件</span></a></li>
+                <li><a href="#">小米手机5<span>约有15件</span></a></li>
+                <li><a href="#">小米手机5<span>约有15件</span></a></li>
+                <li><a href="#">小米手机5<span>约有15件</span></a></li>
+            </ul>
+        </div>-->
+    </header>
+</nav>
+<!--二级导航，二级下拉菜单-->
+<div class="select hide">
+    <ul class="xmPhone hide">
+        <li>
+            <img src="./img/5s-110!160x110.jpg" alt="">
+            <h4>小米5s</h4>
+            <p>1999元起</p>
+        </li>
+        <li>
+            <img src="./img/5splus-220!160x110.jpg" alt="">
+            <h4>小米5splus</h4>
+            <p>2999元起</p>
+        </li>
+        <li>
+            <img src="./img/mi5!160x110.jpg" alt="">
+            <h4>小米手机5</h4>
+            <p>1599元起</p>
+        </li>
+        <li>
+            <img src="./img/maxdingbu!160x110.jpg" alt="">
+            <h4>小米Max</h4>
+            <p>1299元起</p>
+        </li>
+    </ul>
+    <ul class="hmPhone hide">
+        <li>
+            <img src="./img/hongmipro-320!160x110.jpg" alt="">
+            <h4>红米Pro</h4>
+            <p>1499元起</p>
+        </li>
+        <li>
+            <img src="./img/hongminote4!160x110.jpg" alt="">
+            <h4>红米Note 4</h4>
+            <p>899元起</p>
+        </li>
+        <li>
+            <img src="./img/note3!160x110.jpg" alt="">
+            <h4>红米Note 3</h4>
+            <p>799元起</p>
+        </li>
+        <li>
+            <img src="./img/hongmi3s!160x110.jpg" alt="">
+            <h4>红米手机3S</h4>
+            <p>699元起</p>
+        </li>
+        <li>
+            <img src="./img/320-220!160x110.jpg" alt="">
+            <h4>红米手机3X</h4>
+            <p>799元起</p>
+        </li>
+    </ul>
+    <ul class="pad hide">
+        <li>
+            <img src="./img/mipad2-16!160x110.jpg" alt="">
+            <h4>小米平板2 16GB</h4>
+            <p>999元</p>
+        </li>
+        <li>
+            <img src="./img/mipad2-64!160x110.jpg" alt="">
+            <h4>小米平板2 64GB</h4>
+            <p>1299元</p>
+        </li>
+        <li>
+            <img src="./img/mipad2-64-win!160x110.jpg" alt="">
+            <h4>小米平板2  64GB Windows版</h4>
+            <p>1299元</p>
+        </li>
+        <li>
+            <img src="./img/bijiben32012.5!160x110.jpg" alt="">
+            <h4>小米笔记本Air 12.5"</h4>
+            <p>3499元</p>
+        </li>
+        <li>
+            <img src="./img/bijiben320!160x110.jpg" alt="">
+            <h4>小米笔记本Air 13.3"</h4>
+            <p>4999元</p>
+        </li>
+    </ul>
+    <ul class="tv hide">
+        <li>
+            <img src="./img/43toubu.png" alt="">
+            <h4>小米电视3s 43英寸 16GB</h4>
+            <p>1799元</p>
+        </li>
+        <li>
+            <img src="./img/48toubu.png" alt="">
+            <h4>小米电视3s 48英寸</h4>
+            <p>1999元</p>
+        </li>
+        <li>
+            <img src="./img/55toubu1.png" alt="">
+            <h4>小米电视3s 55英寸</h4>
+            <p>3499元</p>
+        </li>
+        <li>
+            <img src="./img/65toubu.png" alt="">
+            <h4>小米电视3s 65英寸</h4>
+            <p>4999元起</p>
+        </li>
+        <li>
+            <img src="./img/70toubu.png" alt="">
+            <h4>小米电视3 70英寸</h4>
+            <p>9999元</p>
+        </li>
+        <li>
+            <img src="./img/mitv3s-65!160x110.jpg" alt="">
+            <h4>查看全部<br>小米电视</h4>
+            <p></p>
+        </li>
+    </ul>
+    <ul class="xmBox hide">
+        <li>
+            <img src="./img/hezimini.png" alt="">
+            <h4>小米盒子mini版</h4>
+            <p>179元起</p>
+        </li>
+        <li>
+            <img src="./img/hezi3.png" alt="">
+            <h4>小米盒子3</h4>
+            <p>249元</p>
+        </li>
+        <li>
+            <img src="./img/hezi3s!160x110.jpg" alt="">
+            <h4>小米盒子3 增强版</h4>
+            <p>399元</p>
+        </li>
+        <li>
+            <img src="./img/zhuji!160x110.jpg" alt="">
+            <h4>小米电视主机</h4>
+            <p>999元</p>
+        </li>
+        <li>
+            <img src="./img/jinshuban!160x110.jpg" alt="">
+            <h4>小米家庭音响 金属版</h4>
+            <p>899元</p>
+        </li>
+        <li>
+            <img src="./img/putonban!160x110.jpg" alt="">
+            <h4>小米家庭音响 标准版</h4>
+            <p>699元</p>
+        </li>
+    </ul>
+    <ul class="router hide">
+        <li>
+            <img src="./img/miwifi!160x110.jpg" alt="">
+            <h4>全新小米路由器</h4>
+            <p>699元</p>
+        </li>
+        <li>
+            <img src="./img/miwifi-3!160x110.jpg.png" alt="">
+            <h4>小米路由器 3 1200M</h4>
+            <p>149元</p>
+        </li>
+        <li>
+            <img src="./img/miwifimini!160x110.jpg" alt="">
+            <h4>小米路由器 mini</h4>
+            <p>129元</p>
+        </li>
+        <li>
+            <img src="./img/luyouqi3c!160x110.jpg" alt="">
+            <h4>小米路由器 3C 300M</h4>
+            <p>99元</p>
+        </li>
+        <li>
+            <img src="./img/miwifilite!160x110.jpg" alt="">
+            <h4>小米路由器 青春版</h4>
+            <p>79元</p>
+        </li>
+        <li>
+            <img src="./img/wifiExtension!160x110.jpg" alt="">
+            <h4>小米WiFi放大器</h4>
+            <p>39元</p>
+        </li>
+    </ul>
+    <ul class="iHardware hide">
+        <li>
+            <img src="./img/scooter!160x110.jpg" alt="">
+            <h4>九号平衡车</h4>
+            <p>1999元</p>
+        </li>
+        <li>
+            <img src="./img/water2!160x110.jpg" alt="">
+            <h4>小米净水器</h4>
+            <p>1299元起</p>
+        </li>
+        <li>
+            <img src="./img/dianfanbao!160x110.jpg" alt="">
+            <h4>米家压力IH电饭煲</h4>
+            <p>999元</p>
+        </li>
+        <li>
+            <img src="./img/air2!160x110.jpg" alt="">
+            <h4>小米空气净化器 2</h4>
+            <p>699元</p>
+        </li>
+        <li>
+            <img src="./img/xiaobaishexiangji!160x110.jpg" alt="">
+            <h4>智能摄像机</h4>
+            <p>149元起</p>
+        </li>
+        <li>
+            <img src="./img/zhinengyingjian!160x110.jpg" alt="">
+            <h4>查看全部<br>智能硬件</h4>
+            <p></p>
+        </li>
+    </ul>
+</div>
+<div class="main-slider">
+    <div class="main-img">
+        <!--<img src="images/lb1.jpg" alt="banner">-->
+        <img src="images/lb2.png" alt="banner" class="">
+        <img src="images/lb3.jpg" alt="banner" class="hide">
+        <img src="images/lb4.jpg" alt="banner" class="hide">
+    </div>
+    <div class="slider-index">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</div>
+<div id="container-m" class="picture-show container">
+    <div class="row p-s-top">
+        <ul class="p-s-t-left col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <li>
+                <img src="images/ma1.jpg" alt="main">
+            </li>
+        </ul>
+        <ul class="p-s-t-right p-s-t-left col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <li>
+                <img src="images/ma2.jpg" alt="main">
+            </li>
+            <li>
+                <img src="images/ma3.jpg" alt="main">
+            </li>
+        </ul>
+    </div>
+    <div class="p-s-bottom row">
+        <ul class="p-s-b-left col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <li>
+                <img src="images/ma5.jpg" alt="main">
+            </li>
+        </ul>
+        <ul class="p-s-b-right col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <li>
+                <img src="images/ma4.jpg" alt="main">
+            </li>
+        </ul>
+    </div>
+</div>
+<div id="container-f" class="picture-footer container">
+    <div class="p-f-show row">
+        <img src="images/fo2.jpg" alt="footer" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    </div>
+</div>
+<!--底部-->
+<footer id="footer" class="lntellh container">
+    <ul id="nav1" class="nav1 clearfix">
+        <li><a href="#"><i class="iconfont icon-gongju">  </i>预约维修服务</a></li>
+        <li><a href="#"><i class="iconfont icon-7tian">  </i>7天无理由退货</a></li>
+        <li><a href="#"><i class="iconfont icon-15tianwuliyoutuihuo">  </i>15天免费换货</a></li>
+        <li><a href="#"><i class="iconfont icon-liwu">  </i>满150元包邮</a></li>
+        <li><a href="#"><i class="iconfont icon-didian">  </i>520余家售后网点</a></li>
+    </ul>
+    <div class="nav2Box">
+        <ul id="nav2" class="nav2 marginTop42 clearfix">
+            <li>
+                <h4>帮助中心</h4>
+                <a href="#">账户管理</a>
+                <a href="#">购物指南</a>
+                <a href="#">订单操作</a>
+            </li>
+            <li>
+                <h4>服务支持</h4>
+                <a href="#">售后政策</a>
+                <a href="#">自助服务</a>
+                <a href="#">相关下载</a>
+            </li>
+            <li>
+                <h4>线下门店</h4>
+                <a href="#">小米之家</a>
+                <a href="#">服务网点</a>
+                <a href="#">零售网点</a>
+            </li>
+            <li>
+                <h4>关于小米</h4>
+                <a href="#">了解小米</a>
+                <a href="#">加入小米</a>
+                <a href="#">联系我们</a>
+            </li>
+            <li>
+                <h4>关注我们</h4>
+                <a href="#">新浪微博</a>
+                <a href="#">小米部落</a>
+                <a href="#">官方微信</a>
+            </li>
+            <li>
+                <h4>特色服务</h4>
+                <a href="#">F 码通道</a>
+                <a href="#">小米移动</a>
+                <a href="#">防伪查询</a>
+            </li>
+        </ul>
+        <div id="contact" class="marginTop42">
+            <p id="tel">400-100-5678</p>
+            <p id="conTime">周一至周日 8:00-18:00 <br/>（仅收市话费）</p>
+            <div id="serv"> 24小时在线客服</div>
+        </div>
+    </div>
+    <div class="statement">
+        <div class="staTxt marginTop30">
+            <img id="xiaomi" src="img/xmlogo_03.png" alt="">
+            <ul class="navFoot clearfix">
+                <li><a href="#">小米商城</a></li>
+                <li><a href="#">MIUI</a></li>
+                <li><a href="#">米聊</a></li>
+                <li><a href="#">多看书城</a></li>
+                <li><a href="#">小米路由器</a></li>
+                <li><a href="#">视频通话</a></li>
+                <li><a href="#">小米后院</a></li>
+                <li><a href="#">小米天猫店</a></li>
+                <li><a href="#">小米淘宝直营店</a></li>
+                <li><a href="#">小米网盟</a></li>
+                <li><a href="#">问题反馈</a></li>
+                <li><a href="#">Select Region</a></li>
+            </ul>
+            <div id="staLink" class="staLink">
+                ©<a href="#">mi.com</a> 京ICP证110507号 <a href="#">京ICP备10046444号</a><a href="#">京公网安备11010802020134号 </a><a href="#">京网文[2014]0059-0009号</a><br/>
+                违法和不良信息举报电话：185-0130-1238，本网站所列数据，除特殊说明，所有数据均出自我司实验室测试
+            </div>
+        </div>
+        <ul class="staLogo marginTop30">
+            <li><img src="./img/seal.png" alt=""></li>
+            <li><img src="./img/v-logo-2.png" alt=""><span></span></li>
+            <li><img src="./img/v-logo-1.png" alt=""><span></span></li>
+            <li><img src="./img/v-logo-3.png" alt=""><span></span></li>
+        </ul>
+    </div>
+    <div class="slogan">探索黑科技，小米为发烧而生</div>
+</footer>
+</body>
+</html>
+<script>
+    $('.nav-h li').mouseover(function(){
+        $(this).children('span').css('color','#d01');
+        if($(this).index() != 0){
+            $('.select').removeClass('hide');
+            $('.select').slideDown().finish();
+            $('.select').find('ul').addClass('hide');
+            $('.select').find('ul').eq($(this).index()).removeClass('hide');
+        } else if($(this).index() == 0){
+            $('.nav-h-o').children('span').css('color','#fff');
+            $('.nav-h-o i').css('color','#fff');
+        }
+    }).mouseout(function(){
+        if($(this).index() != 0){
+            $(this).children('span').css('color','#000');
+        }else if($(this).index() == 0){
+            $('.nav-h-o').children('span').css('color','#000');
+            $('.nav-h-o i').css('color','#000');
+        }
+    })
+    $('.nav-h').mouseout(function(){
+        $('.select').slideUp();
+    })
+    $('.select').find('ul').mouseover(function(){
+        $('.select').slideDown().finish() //停止当前动画和动画队列
+    }).mouseout(function(){
+        $('.select').slideUp()
+    })
+</script>

@@ -1,0 +1,397 @@
+<link rel="stylesheet" href="/stylesheets/shop/index.css">
+
+
+<div class="add-t-link">
+    <ul class="container">
+        <li>
+            <a href="#">首页</a>
+            <i class="fa fa-edge" aria-hidden="true"></i>
+        </li>
+        <li>
+            <a id="addshop-top-block" href="#">购买商品</a>
+        </li>
+    </ul>
+</div>
+<div class="add-shoping container">
+    <div class="row" style="position: relative">
+        <div class="shop-Pictures clearfix col-lg-6 col-md-6 col-sm-6 col-xs-12"style="margin-top: 20px">
+            <div>
+                <img src="<%= shop.pictures%>"
+                     alt="这个商品没有预览图">
+            </div>
+        </div>
+        <div class="shop-details margin-vertical col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div>
+                <h2 class="gray-weight"><%= shop.shopname %></h2>
+            </div>
+            <div class="sh-de-price">
+                <div>
+                    <span class="gray-small margin-right5">商铺价格</span>
+                    <i class="fa fa-jpy" aria-hidden="true"></i>:
+                    <span class="red-weight"><%= shop.price %></span>
+                </div>
+            </div>
+            <div class="sh-de-address">
+                <div>
+                    <span class="gray-small margin-right20">配送至</span>
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                    <% if(url == null){%>
+                    <span class="font-alert">还没有设置默认的配送地址,点击<a href="/user-list">这里前往个人设置配置地址</a></span>
+                    <%}else{%>
+                    <span><%= url.url%></span>
+                    <%}%>
+                </div>
+            </div>
+            <div class="sh-de-weight">
+                <div>
+                    <span class="gray-small margin-right30">重量</span>
+                    <span><%= shop.weight %></span>
+                </div>
+            </div>
+            <div class="sh-de-number">
+                <div class="s-d-n-left">
+                    <input class="flort-left clearfix click_shop_count_block" type="text" value="1">
+                    <div class="flort-left" style="width: 25px;">
+                        <span class="flort-left clearfix display-block click_shop_count_add" style="cursor: pointer;" >+</span>
+                        <span class="flort-left clearfix display-block click_shop_count_remove" style="cursor: pointer;">-</span>
+                    </div>
+                </div>
+                <% if(url == null){%>
+                <div class="s-d-n-right click-shop-buy" style="width: 50%;height: 50px;">
+                    <span class="popupAlert"><a href="#" style="color: grey">加入购物车</a></span>
+                </div>
+                <%}else{%>
+                <div class="s-d-n-right click-shop-buy click-shop-addCart" target="<%= shop._id %>" style="width: 50%;height: 50px;">
+                    <span class="popupAlert"><a href="#">加入购物车</a></span>
+                </div>
+                <%}%>
+            </div>
+        </div>
+        <div class="shop-operate">
+            <div class="click-shop-buy click-shop-collect" target="<%= shop._id %>" style="width: 30%;">
+                <i class="fa fa-heart-o" aria-hidden="true"></i>
+                <a href="#">收藏</a>
+            </div>
+            <div class="click-shop-buy click-shop-collect-active hide" target="<%= shop._id %>" style="width: 30%;">
+                <i class="fa fa-heart-o" aria-hidden="true"></i>
+                <a href="#">从收藏删除</a>
+            </div>
+            <div class="click-shop-buy click-shop-satisfaction" target="<%= shop._id %>" >
+                <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                <a href="#">点赞</a>
+            </div>
+            <div class="click-shop-buy click-shop-satisfaction-active hide" target="<%= shop._id %>">
+                <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                <a href="#">取消点赞</a>
+            </div>
+            <% if(user._id == shop.author._id){%>
+            <div class="click-shop-buy click-shop-edit" target="<%= shop._id %>" style="width: 30%;">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                <a href="/shop/<%= shop._id%>/edit">编辑</a>
+            </div>
+            <div class="click-shop-buy click-shop-deleted" target="<%= shop._id %>" >
+                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                <a href="/shop/<%= shop._id %>/delete">删除</a>
+            </div>
+            <%}%>
+        </div>
+    </div>
+
+    <div class="shop-author-recommends-list">
+        <h4 class="s-a-r-l-h4">相关推荐</h4>
+        <!--相关推荐-->
+        <div class="row shop-author-recommends">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden-xs">
+                <ul class="s-a-re-list">
+                    <li class="s-a-r-l-main margin-right1">
+                        <div class="s-a-r-l-m-img ">
+                            <div class="s-a-r-l-m-i-div">
+                                <img class=" clearfix" src="/images/test1.jpg" alt="">
+                                <div class="flort-right">
+                                    <p>类型:<span>手机</span></p>
+                                    <p>价格:<span>4399</span></p>
+                                </div>
+                            </div>
+
+                            <div class="click-shop-buy click-shop-buy-recommends">
+                                <a href="">点击查看</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="s-a-r-l-main margin-right1">
+                        <div class="s-a-r-l-m-img ">
+                            <div class="s-a-r-l-m-i-div">
+                                <img class=" clearfix" src="/images/test1.jpg" alt="">
+                                <div class="flort-right">
+                                    <p>类型:<span>手机</span></p>
+                                    <p>价格:<span>4399</span></p>
+                                </div>
+                            </div>
+
+                            <div class="click-shop-buy click-shop-buy-recommends">
+                                <a href="">点击查看</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="s-a-r-l-main margin-right1">
+                        <div class="s-a-r-l-m-img ">
+                            <div class="s-a-r-l-m-i-div">
+                                <img class=" clearfix" src="/images/test1.jpg" alt="">
+                                <div class="flort-right">
+                                    <p>类型:<span>手机</span></p>
+                                    <p>价格:<span>4399</span></p>
+                                </div>
+                            </div>
+
+                            <div class="click-shop-buy click-shop-buy-recommends">
+                                <a href="">点击查看</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="s-a-r-l-main margin-right1">
+                        <div class="s-a-r-l-m-img ">
+                            <div class="s-a-r-l-m-i-div">
+                                <img class=" clearfix" src="/images/test1.jpg" alt="">
+                                <div class="flort-right">
+                                    <p>类型:<span>手机</span></p>
+                                    <p>价格:<span>4399</span></p>
+                                </div>
+                            </div>
+
+                            <div class="click-shop-buy click-shop-buy-recommends">
+                                <a href="">点击查看</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="s-a-r-l-main ">
+                        <div class="s-a-r-l-m-img ">
+                            <div class="s-a-r-l-m-i-div">
+                                <img class=" clearfix" src="/images/test1.jpg" alt="">
+                                <div class="flort-right">
+                                    <p>类型:<span>手机</span></p>
+                                    <p>价格:<span>4399</span></p>
+                                </div>
+                            </div>
+
+                            <div class="click-shop-buy click-shop-buy-recommends">
+                                <a href="">点击查看</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!--回复列表-->
+<div class="aw-container-wrap" ng-app="questionApp" ng-controller="questionController">
+    <div class="container">
+        <div class="row">
+            <div class="aw-content-wrap clearfix">
+                <div class="col-sm-12 col-md-9 aw-main-content">
+                    <!--问题主体-->
+                    <% include shop/reply %>
+                    <!--编辑器-->
+                    <div class="aw-mod aw-replay-box">
+                        <form id="reply_form" target="/<%= shop._id %>/reply" ng-submit="postForm()">
+                            <div class="mod-head">
+                                <a href="/user/<%= user.name %>" class="aw-user-name">
+                                    <img src="<%= user.avatar %>">
+                                </a>
+                                <p>
+                                    <%= user.name %>
+                                </p>
+                            </div>
+                            <div class="mod-body">
+                                <div class="aw-mod aw-editor-box">
+                                    <div class="mod-head" style="border:0">
+                                        <div class="wmd-panel">
+                                            <textarea id="reply_markdown"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="mod-body clearfix">
+                                        <span class="pull-right">
+                                            <button id="reply_button" type="submit" class="btn btn-normal btn-success">回复</button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!--编辑器-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="alert alert-warning alert-collect hide" style="position: fixed;top: 150px;left:calc(50% - 25px);background: #f0f9eb;color: #67c23a;opacity: 0.8">
+    <a href="#" class="close" data-dismiss="alert">
+        &times;
+    </a>
+    <strong>收藏成功！</strong>
+</div>
+<div class="alert alert-warning alert-likes hide" style="position: fixed;top: 150px;left:calc(50% - 25px);background: #f0f9eb;color: #67c23a;opacity: 0.8">
+    <a href="#" class="close" data-dismiss="alert">
+        &times;
+    </a>
+    <strong>点赞成功！</strong>
+</div>
+<div class="alert alert-warning alert-uncollect hide" style="position: fixed;top: 150px;left:calc(50% - 25px);background: #FDF5E6;color: #eb9e05;opacity: 0.8">
+    <a href="#" class="close" data-dismiss="alert">
+        &times;
+    </a>
+    <strong>已从收藏中删除</strong>
+</div>
+<div class="alert alert-warning alert-unlikes hide" style="position: fixed;top: 150px;left:calc(50% - 25px);background: #FDF5E6;color: #eb9e05;opacity: 0.8">
+    <a href="#" class="close" data-dismiss="alert">
+        &times;
+    </a>
+    <strong>已取消点赞</strong>
+</div>
+<div class="alert alert-warning alert-addCart hide" style="position: fixed;top: 150px;left:calc(50% - 25px);background: #f0f9eb;color: #67c23a;opacity: 0.8">
+    <a href="#" class="close" data-dismiss="alert">
+        &times;
+    </a>
+    <strong>已添加该商品到购物车</strong>
+</div>
+<div class="alert alert-warning alert-unaddCart hide" style="position: fixed;top: 150px;left:calc(50% - 25px);background: #FDF5E6;color: #eb9e05;opacity: 0.8">
+    <a href="#" class="close" data-dismiss="alert">
+        &times;
+    </a>
+    <strong>请不要重复添加，选择多件请进入购物车选择</strong>
+</div>
+<script>
+    $('.click-shop-edit,.click-shop-deleted').click(function(event){
+//        console.log(1515)
+        window.location.href = $(this).children('a').attr('href')
+    })
+    //加入购物车
+    $('.click-shop-addCart').click(function(event){
+        var shop_num = $('.click_shop_count_block').val()
+        console.log(shop_num)
+        let data = {
+            shop_num
+        }
+        var id = $(this).attr('target')
+        $.ajax({
+            type:'POST',
+            url:`/shoping-clickAdd/${id}`,
+            data:$.param(data),
+            headers:{'Content-Type':'application/x-www-form-urlencoded'}
+        }).done(function(data){
+            if(data.success == true){
+                $('.alert-addCart').removeClass('hide');
+                setTimeout(function(){
+                    $('.alert-addCart').addClass('hide');
+                },1500)
+                // $('.click-shop-satisfaction').removeClass('gray-small')
+            }else if(data == null) {
+                $('.alert-unaddCart').removeClass('hide');
+                setTimeout(function(){
+                    $('.alert-unaddCart').addClass('hide');
+                },1500)
+            }
+           /* window.location.href= '/shoping-list/<%=user._id%>'*/
+        })
+    })
+    window._bd_share_config = {
+        "common": {
+            "bdSnsKey": {},
+            "bdText": "",
+            "bdMini": "1",
+            "bdMiniList": ["qzone", "tsina", "renren", "douban", "sqq"],
+            "bdPic": "",
+            "bdStyle": "0",
+            "bdSize": "16"
+        }, "share": {}
+    };
+    with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+    //问题详情
+    const questionApp = angular.module('questionApp',[]);
+    questionApp.controller('questionController',($scope,$http)=>{
+        let simplemde = new SimpleMDE({
+            element: $("#reply_markdown")[0],
+            status:false,
+            styleSelectedText:false,
+        });
+        $(function(){
+            $('.CodeMirror').css('minHeight','70px');
+            $('.CodeMirror-scroll').css('minHeight','70px');
+            $('#reply_button').attr('disabled',true);
+            simplemde.codemirror.on('change',function(){
+                if(simplemde.value().replace(/\s+/g,'').length > 0){
+                    $('#reply_button').removeAttr('disabled');
+                }else{
+                    $('#reply_button').attr('disabled',true);
+                }
+            })
+        })
+        $scope.postForm = ()=>{
+            //要发送的地址
+            let url = $('#reply_form').attr('target');
+            let content = simplemde.value();
+            $http({
+                method:'POST',
+                url:url,
+                data:$.param({content:content}),
+                headers:{'Content-Type':'application/x-www-form-urlencoded'}
+            }).then(data=>{
+                if(data.data.message == 'success'){
+                    window.location.reload();
+                }else{
+                    alert(data.data);
+                }
+            }).catch(err=>{
+                console.log(err);
+            })
+        }
+        //问题的回复页面，点击 加载更多 返回全部回复
+        $scope.allReply=()=>{
+            let Id =  $('#allreply').attr('data-id')
+            // console.log(Id)
+            $http({
+                method:'get',
+                url:`/undateAllMessage/${Id}`,
+                headers:{'Content-Type':'application/x-www-form-urlencoded'}
+            }).then(data=>{
+                console.log(data.data)
+                $('#reply .aw-item').remove();
+                $('#reply').prepend(data.data);
+                $('#allreply').css('display','none')
+                console.log(data.data)
+            }).catch(err=>{
+                console.log(err)
+            })
+        }
+        //删除操作
+        $scope.delete = (event)=>{
+            let targetA = $(event.currentTarget);
+            let id = targetA.attr('target');
+            console.log(id)
+            if(id !== '' && confirm('确定要删除这个问题吗？')){
+
+                $http({
+                    method:'POST',
+                    url:`/shop/${id}/delete`,
+                    headers:{'Content-Type':'application/x-www-form-urlencoded'}
+                }).success((data)=>{
+                    console.log(data)
+                    if(!data.success){
+                        alert(data.message);
+                        window.location.href = '/';
+                    }else{
+
+                    }
+                }).error(err=>{
+                    console.log(err);
+                })
+            }
+        }
+    })
+
+</script>

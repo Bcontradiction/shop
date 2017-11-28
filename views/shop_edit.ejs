@@ -1,0 +1,196 @@
+<div class="lk_pushshoping">
+    <div class="add-t-link">
+        <ul class="container" style="position: relative">
+            <li style="position: absolute;top: 50%;left: 2%;">
+                <a href="#">首页</a>
+                <i class="fa fa-edge" aria-hidden="true"></i>
+            </li>
+            <li style="position: absolute;top: 50%;left: 7%;">
+                <a id="addshop-top-block" href="#">编辑</a>
+            </li>
+        </ul>
+    </div>
+    <div class="add-shoping container" ng-app="editShopApp" ng-controller="editShopController">
+        <div class="row">
+            <div class="addshop-top col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+                <div class="addshop-title">
+                    <h2 class="red-weight">
+                        <i class="fa fa-upload" aria-hidden="true"></i>
+                        更改商品信息
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="addshop-main ">
+            <form action="" name="editshopForm" method="post" ng-submit="postForm()" target="/shop/<%= shop._id%>/edit">
+                <div class="add-mod row">
+                    <div class="add-mod-left col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="shop-type">
+                            <h2>商品的分类</h2>
+                            <div class="shop-type-index">
+                                <select name="category" id="" ng-model="formData.category">
+                                    <% categorys.forEach(function(category,index){ %>
+                                    <option value="<%= category[0]%>"><%= category[1] %></option>
+                                    <% }) %>
+                                </select>
+                                <!--错误提示信息-->
+                                <div class="shop-note">
+                                    <span class="font-alert">请记得选择商品类型后再进行下一步</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="shop-name">
+                            <h2>商品的名称</h2>
+                            <div class="shop-value-input">
+                                <input type="text" placeholder="商品的名称..." class="form-control" name="shopname"
+                                       ng-model="formData.shopname" ng-minlength="1" ng-maxlength="" required value="<%= shop.shopname%>">
+                                <div class="shop-note">
+                                <span ng-cloak class="font-alert" ng-show="editshopForm.shopname.$invalid && !editshopForm.shopname.$pristine">
+                                    这个名字的长度不符合</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="shop-describe">
+                            <h2>商品的描述</h2>
+                            <div class="shop-value-input">
+                                <input type="text" placeholder="商品的描述..." class="form-control" name="describe"
+                                       ng-model="formData.describe" ng-minlength="1" ng-maxlength="40" required value="<%= shop.describe%>">
+                                <div class="shop-note">
+                                    <span ng-cloak class="font-alert" ng-show="editshopForm.describe.$invalid && !editshopForm.describe.$pristine">
+                                        我建议你得填写一些描述来使你的商品获得更多的关注。当然,太多的描述会占据太多的版块,网站的布局并不支持你这么做</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="shop-value">
+                            <h2>商品的价格 <i class="fa fa-jpy" aria-hidden="true"></i></h2>
+                            <div class="shop-value-input">
+                                <input type="number" placeholder="商品的价格..." class="form-control" name="price"
+                                       ng-model="formData.price" ng-minlength="1" ng-maxlength="20" required value="<%= shop.price%>"
+                                       style="">
+
+                                <div class="shop-note">
+                                <span ng-cloak ng-show="editshopForm.price.$invalid && !editshopForm.price.$pristine"
+                                      class="font-alert">...真的是手没滑？当然真的没滑的话...emmmmm</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="shop-value">
+                            <h2>商品的重量 <span class="gray-small font-alert">请注意标明单位</span></h2>
+                            <div class="shop-value-input">
+                                <input type="text" placeholder="商品的重量..." class="form-control" name="weight"
+                                       ng-model="formData.weight" ng-minlength="1" ng-maxlength="20" required value="<%= shop.weight%>">
+                                <div class="shop-note">
+                                <span ng-cloak ng-show="editshopForm.weight.$invalid && !editshopForm.weight.$pristine"
+                                      class="font-alert">并不支持重于500kg的商品</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="side-bar add-mod-right col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <dl>
+                            <dt class="pull-left text-center side-bar-top">
+                            <div class="kv-avatar">
+                                <div class="file-loading">
+                                    <input id="picturesEdit" name="pictures" type="file" target="<%= shop.pictures %>" required>
+                                </div>
+                            </div>
+                            </dt>
+                            <dd style="width:200px;" class="pull-left text-center side-bar-font">
+                                <h2 class="font-big gray-weight">上传实物图</h2>
+                                <p>支持jpg、gif、png等格式的图片(其他的图片格式不支持)</p>
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="mod-footer-sub clearfix col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <button type="submit" class="btn btn-large btn-success text-center"
+                                ng-disabled="editshopForm.$invalid">确认更改</button>
+                        <div id="kv-avatar-errors-2" class="center-block text-center" style="width:800px;display:none">
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="/plugins/fileinput/css/fileinput.min.css">
+<script src="/plugins/fileinput/js/fileinput.min.js"></script>
+<script src="/plugins/fileinput/js/locales/zh.js"></script>
+<script src="/public/javascripts/controller.js"></script>
+<script>
+    //编辑页面
+    var editShopApp = angular.module('editApp',[]);
+    editShopApp.controller('editShopController',($scope,$http)=>{
+        //数据
+        $scope.formData = {
+            category:$('select[name=category]').val()
+        };
+        $("#picturesEdit").fileinput({
+            overwriteInitial: true,
+            uploadUrl:'/shop/updateImage',
+            maxFileSize: 1500,
+            showClose: false,
+            showCaption: false,
+            showBrowse: false,
+            browseOnZoneClick: true,
+            removeLabel:'',
+            removeIcon:'<i class="glyphicon glyphicon-remove"></i>',
+            removeClass:'btn btn-danger',
+            removeTitle:"取消或重置更改",
+            uploadLabel:'',
+            uploadClass:'btn btn-success',
+            uploadIcon:'<i class="glyphicon glyphicon-arrow-up"></i>',
+            msgErrorClass:'alert alert-block alert-danger',
+            elErrorContainer:'kv-avatar-errors-2',
+            layoutTemplates:{main2:'{preview}' + '{browse}'},
+            language: "zh",
+            allowedFileExtensions: ["jpg", "png", "gif"],
+            defaultPreviewContent:'<img src="/images/default.jpg">'
+        }).on('fileuploaded',function(event,data,previewId,index){
+            console.log(data.response.url.replace('public',''));
+            $scope.formData.pictures = data.response.url.replace('public','')
+        });
+
+
+        $scope.isEmpty = true;
+        $scope.error = '';
+
+
+        $scope.updateForm = (event)=>{
+            let form = $(event.currentTarget);
+            let url = form.attr('target');
+            window.location.href = '/';  //！！！！！！！！
+            $http({
+                method:'POST',
+                url:url,
+                data:$.param($scope.formData),
+                headers:{'Content-Type':'application/x-www-form-urlencoded'}
+            }).success((data)=>{
+                console.log(1)
+                console.log(data)
+                if(typeof data === 'object'){
+                    window.location.href = data.data.url;
+                }else{
+                    //return server error
+                    $scope.error = data;
+                    $('#errorbox').fadeIn();
+                    setTimeout(function(){
+                        $('#errorbox').fadeOut();
+                    },1000)
+                }
+
+            }).error((err)=>{
+                console.log(err);
+            })
+        }
+    })
+</script>

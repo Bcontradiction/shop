@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%- title %></title>
+    <!--加载bootstrap前端UI框架-->
+    <!--引入bootstrap插件-->
+    <!--<link rel="stylesheet" href="/plugins/bootstis_active/css/bootstrap.is_active.css">-->
+    <!--<script type="text/javascript" src="/plugins/bootstrap/js/bootstrap.min.js"></script>-->
+    <!--<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>-->
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!--加载图标库-->
+    <link rel="stylesheet" href="/plugins/font-awesome/css/font-awesome.css">
+    <!--引入jquery-->
+    <script type="text/javascript" src="/plugins/jquery.min.js"></script>
+    <!--加载angularJS-->
+    <script src="/plugins/angular/angular.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+
+    <!--加载markdown编辑器-->
+    <link rel="stylesheet" href="/markdown/dist/simplemde.min.css">
+    <script src="/markdown/dist/simplemde.min.js"></script>
+    <!--加载全局的css样式-->
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/normalize.min.css">
+    <!--<link rel="stylesheet" href="/stylesheets/myyzlq.css">-->
+    <!--动态的引入某个页面的静态资源-->
+    <link rel="stylesheet" href="<%= locals.resource %>">
+   <!-- <link href='https://fonts.googleapis.com/css?family=Roboto:100,300' rel='stylesheet' type='tis_active/css'>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+    <!--公共的JS文件-->
+    <!--<script type="text/javascript" src="/javascripts/public.js"></script>-->
+    <script type="text/javascript" src="/javascripts/index.js"></script>
+    <!--<script type="text/javascript" src="../public/javascripts/controller.js"></script>-->
+    <script type="text/javascript" src="/javascripts/user.js"></script>
+    <script type="text/javascript" src="/javascripts/shop.js"></script>
+    <!--login||register-->
+    <!--<link rel="stylesheet" href="/stylesheets/normalize.css">-->
+    <!--setting 上传头像-->
+    <link rel="stylesheet" href="/plugins/fileinput/css/fileinput.min.css">
+    <script rel="stylesheet" href="/plugins/fileinput/js/fileinput.min.css"></script>
+    <script rel="stylesheet" href="/plugins/fileinput/js/locales/zh.js"></script>
+    <!--shop回复列表的css-->
+    <!--<link rel="stylesheet" href="/stylesheets/shop/index.css">-->
+    <!--编辑器-->
+    <link rel="stylesheet" href="/plugins/editor/dist/simplemde.min.css">
+    <script type="text/javascript" src="/plugins/editor/dist/simplemde.min.js"></script>
+</head>
+
+<body>
+<div class="bg_all">
+    <div class="aw-top-menu-wrap">
+        <div class="container">
+            <a href="/" class="logo_all clearfix">
+                <img src="images/logo3.png" alt="">
+            </a>
+            <div class="ls-nav-left">
+                <ul class="linkstart_nav">
+                    <li class="click_linkstart_li" id="lk_indexes"><a href="/index">索引</a></li>
+                    <%if(user){%>
+                    <li class="click_linkstart_li" id="lk_publish"><a href="/shop/add">发布商品</a></li>
+                    <li class="click_linkstart_li" id="lk_shoppingcart"><a href="/shoping-list/<%=user._id%>">我的购物车</a></li>
+                    <%}%>
+                </ul>
+            </div>
+            <div class="ls-nav-right">
+                <% if(!user){%>
+                <span>
+                    <a class="login_o btn btn-normal btn-primary" href="/login" style="background: #FF9800;border:none">登录</a>
+                    <a class="register_o btn btn-normal btn-success" href="/register" style="background: #f44336;border:none">注册</a>
+                </span>
+                <%}else{%>
+                <a href="#" class="aw-user-nav-dropdown" style="height: 50px;padding-bottom: 50px">
+                    <img src="<%= user.avatar%>">
+                </a>
+                <!--购物车-->
+                <div class="clearfix" style="display: inline-block;float: right;margin-top: 8px;position: relative">
+                    <a href="/shoping-list">
+                        <i style="font-size: 36px;color: rgb(150,190,230)" class="fa fa-shopping-cart" aria-hidden="true"></i>
+                    </a>
+                    <a href="/my/messages">
+                        <i class="fa fa-bell-o gray-weight" style="font-size: 28px" aria-hidden="true"></i>
+                        <span class="nav-message" style="position: absolute;top: -15px;right: -5px;color: #d2322d;font-weight: bold;font-size: 15px"></span>
+                    </a>
+
+                </div>
+                <div class="aw-dropdown dropdown-list pull-right hide box-shadow">
+                    <ul class="aw-dropdown-list">
+                        <li class="hidden-xs">
+                            <a href="/user-list">
+                                <i class="fa fa-cogs"></i>
+                                信息及设置
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/logout">
+                                <i class="fa fa-sign-out"></i>
+                                退出
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <%}%>
+            </div>
+        </div>
+    </div>
+    <%- body %>
+    <footer class="footer" style="border:0">
+        <div class="container" style="border:0">
+        </div>
+        <div class="footer-bottom" style="border:0">
+            <ul class="list-inline text-center" style="border:0">
+            </ul>
+        </div>
+    </footer>
+</div>
+
+</body>
+</html>
+<script>
+
+    $('#lk_indexes').click(function(event){
+        $.ajax({
+            type:'GET',
+            url:`/index/lk_indexes`
+        }).then(data=>{
+            console.log(data)
+        }).catch(err=>{
+            console.log(err)
+        })
+    })
+    $('#lk_publish').click(function(event){
+        $.ajax({
+            type:'GET',
+            url:`/index/lk_publish`
+        }).then(data=>{
+            console.log(data)
+        }).catch(err=>{
+            console.log(err)
+        })
+    })
+    $('#lk_shoppingcart').click(function(event){
+        $.ajax({
+            type:'GET',
+            url:`/index/lk_shoppingcart`
+        }).then(data=>{
+            console.log(data)
+        }).catch(err=>{
+            console.log(err)
+        })
+    })
+    $('.aw-user-nav-dropdown,.dropdown-list').mouseover(function(event){
+        $('.dropdown-list').removeClass('hide')
+    }).mouseout(function(){
+        $('.dropdown-list').addClass('hide')
+    });
+
+</script>

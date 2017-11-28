@@ -1,0 +1,45 @@
+<div class="container views-userlist-collect">
+    <!--导航-->
+    <div class="user-collect vi-co-title">
+        <ul class="nav aw-nav-tabs active">
+            <h4>
+                <i class="fa fa-heart" aria-hidden="true"></i>&nbsp;发表过的商品
+            </h4>
+        </ul>
+    </div>
+    <ul class="vi-co-list">
+        <%if(shop != ''){%>
+        <% shop.forEach(function(shops){%>
+        <li class="v-c-l-li">
+            <div class="v-c-l-l-img flort-left">
+                <a href="">
+                    <img src="<%= shops.pictures%>" alt="这个商品没有预览图">
+                </a>
+            </div>
+            <div class="v-c-l-l-info flort-left">
+                <p><%= shops.shopname %></p>
+                <p>$<%= shops.price %></p>
+            </div>
+            <div class="v-c-l-l-time flort-left">
+                <span>发布时间</span>
+                <span><%= shops.create_time %></span>
+            </div>
+            <div class="click-shop-buy v-c-l-l-btn-pub flort-right">
+                <span><a href="/shop/<%=shops._id %>">进入商品编辑页面</a></span>
+            </div>
+        </li>
+        <% })%>
+        <%}else{%>
+        <li style="text-align: center">
+            <h3>你还没有发表过商品</h3>
+        </li>
+        <%}%>
+    </ul>
+</div>
+<script>
+    $('.v-c-l-l-btn-pub').click(function(event){
+//        console.log(1515)
+        window.location.href = $(this).children('span').children('a').attr('href')
+
+    })
+</script>

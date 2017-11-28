@@ -1,0 +1,32 @@
+/**
+ * Created by Administrator on 2017/9/22.
+ */
+//用户的数据库配置
+module.exports = {
+    //数据库连接的地址
+    host:'localhost',
+    //数据库连接的端口号
+    port:24120,
+    //数据库的名字
+    db:'cmx_AddANewEntry',
+    //加密的密码
+    psd:'solarSystem',
+    mail_opts:{
+        //邮箱的服务器地址
+        host:'smtp.163.com',
+        //权限授权码
+        auth:{
+            user:'ll24120494@163.com',
+            pass:'c158998674'
+        }
+    },
+    //cookie的名字
+    auth_name:'cmx_system',
+    //cookie的加密key值
+    cookie_secret:'cmx',
+    categorys:[
+        ['phone','手机及手机配件'],
+        ['computer','电脑及电脑配置'],
+        ['appliances','家电']
+    ]
+}

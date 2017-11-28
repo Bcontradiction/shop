@@ -1,0 +1,21 @@
+<!--商品-->
+<% shop.forEach(function(shops){%>
+<div class="shoping-clock-single col-lg-3 col-md-4 col-sm-4 col-xs-12" target="<%=shop.length%>">
+    <div class="shop-bl-img">
+        <a href="#">
+            <img src="<%=shops.pictures%>" alt="这个商品没有预览图" class="clearfix">
+        </a>
+    </div>
+    <ul class="shop-bl-font">
+        <li class="shop-bl-font-describe">
+            <p><%=shops.shopname%></p>
+        </li>
+        <li class="shop-bl-font-price">
+            $<p><%=shops.price%></p>
+        </li>
+        <li class="click-shop-buy add-cart-post" target="<%=shops._id%>">
+            <span><a href="#">加入购物车</a></span>
+        </li>
+    </ul>
+</div>
+<%})%>
